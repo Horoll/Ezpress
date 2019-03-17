@@ -1,0 +1,17 @@
+{
+  "port":8000,
+  "staticPath":"/application/public",
+
+  "session":{
+	"secret":  "secret", 
+    "resave" : "true",
+    "saveUninitialized": false,
+    "cookie" : {
+        "maxAge" : 864000
+    }
+  },
+
+  "credentials":{
+  	"cookieSecret":"GGSLMO7WQX"
+  }
+}
