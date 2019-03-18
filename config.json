@@ -4,7 +4,7 @@
 
   "session":{
 	"secret":  "secret", 
-    "resave" : "true",
+    "resave" : "flase",
     "saveUninitialized": false,
     "cookie" : {
         "maxAge" : 864000
