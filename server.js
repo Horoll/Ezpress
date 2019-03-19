@@ -9,10 +9,10 @@ var cof = tools.readJson("./config.json");
 
 //注册body-parser中间件以解析请求
 var bodyParser = require('body-parser');
+// 解析 application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended:true}));
 // 解析 application/json
 app.use(bodyParser.json()); 
-// 解析 application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded());
 
 //注册cookie-parser中间件，并且传入config.js中的cookie密钥
 app.use(require('cookie-parser')(cof.credentials.cookieSecret));
@@ -26,7 +26,6 @@ app.use(express.static(__dirname + cof.staticPath));
 
 //读取路由信息
 var routerList  = tools.readJson("./route.json");
-
 //注册控制器,并绑定相应路由
 for(var route in routerList){
 	app.use('/' + route, 

@@ -2,6 +2,13 @@
   "port":8000,
   "staticPath":"/application/public",
 
+  "database":{
+  	"host":"localhost",
+  	"user":"root",
+  	"password":"960921",
+  	"database":"weight_data"
+  },
+
   "session":{
 	"secret":  "secret", 
     "resave" : "flase",
