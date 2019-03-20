@@ -32,6 +32,14 @@ router.post('/testpost', function (req, res) {
 //测试bodyParser.json
 //...
 
+//测试模版引擎
+router.get('/testejs',function(req,res){
+	 res.render('testejs',{
+	 	id:req.query.id,
+        name:req.query.name,
+    }) ;
+});
+
 
 //测试db模块
 var dbCon = require('../../lib/database').dbCon();

@@ -1,6 +1,9 @@
 {
   "port":8000,
+
   "staticPath":"/application/public",
+
+  "template":"ejs",
 
   "database":{
   	"host":"localhost",

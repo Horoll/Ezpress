@@ -21,7 +21,9 @@ app.use(require('express-session')(cof.session));
 //注册静态文件路径
 app.use(express.static(__dirname + cof.staticPath));
 //注册模版引擎
-
+app.set('view engine',cof.template) ; 
+//设置模板文件位置
+app.set('views', __dirname + '/application/view') ;
 
 
 //读取路由信息
