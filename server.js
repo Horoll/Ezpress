@@ -35,6 +35,20 @@ for(var route in routerList){
 	);
 }
 
+//注册错误页面
+// 定制 404 页面
+app.use(function(req, res){
+res.status(404);
+res.render('404');
+});
+// 定制 500 页面
+app.use(function(err, req, res, next){
+console.error(err.stack);
+res.status(500);
+res.render('404');
+});
+
+
 //启动服务器
 app.listen(cof.port, function () {
   console.log('Welcome to Ezpress!');
