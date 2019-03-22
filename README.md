@@ -57,30 +57,54 @@ module.exports = router;
 当我们访问http://localhost:8000/info/detail 时，执行第二个router.get('/detail',...)，浏览器显示 detail info!  
 我们只需要把业务逻辑代码写在控制器中的各个中间件及回调函数
 
-*** 详细的路由、express.Router及中间件、回调函数的用法等请阅读express的文档**
+*** 详细的路由、express.Router及中间件、回调函数的用法等请阅读express的文档***
 
+###使用模版引擎
+Ezpress默认使用的是ejs模版引擎，若要在Ezpress中使用其他模版引擎，请先使用npm在项目中安装。然后在config.json文件中，将template改为相应的模版名称。
 
+模版文件应放在/application/view/ 中。在控制器中，使用res.render()进行数据的传递和数据渲染。
+```
+//测试模版引擎
+router.get('/testejs',function(req,res){
+   res.render('testejs',{
+    id:req.query.id,
+        name:req.query.name,
+    }) ;
+});
+```
+在上述的例子中，访问 /../testjs后，控制器会渲染/application/view/testejs.ejs模版文件，并且将get传递的参数id和name的值传递给模版进行渲染。
 
+更多的ejs模版用法请参考ejs文档和express文档。
 ### 系统配置
 Ezpress的系统配置参数放在 config.json 中，以json格式保存
 ```
 {
   "port":8000,//端口号，默认8000
   "staticPath":"/application/public",//静态文件存放路径
+  
+  "template":"ejs",//模版引擎，默认使用ejs
+  
+  //数据库配置，目前只支持mysql
+    "database":{
+    "host":"localhost",
+    "user":"root",
+    "password":"960921",
+    "database":"weight_data"
+  },
 
-	//Ezpress采用express-session使用session
-	//这里session内的参数会在注册express-session时传入，具体请参考express-session手册
+    //Ezpress采用express-session使用session
+    //这里session内的参数会在注册express-session时传入，具体请参考express-session手册
   "session":{
-	"secret":  "secret", 
+  "secret":  "secret", 
     "resave" : "flase",
     "saveUninitialized": false,
     "cookie" : {
         "maxAge" : 864000
     }
   },
-	//credentials：存放各种凭证
+  //credentials：存放各种凭证
   "credentials":{
-  	"cookieSecret":"GGSLMO7WQX"//cookie加密时使用的密钥
+    "cookieSecret":"GGSLMO7WQX"//cookie加密时使用的密钥
   }
 }
 
