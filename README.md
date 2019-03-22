@@ -105,6 +105,7 @@ router.get('/db/query',function(req,res){
 首先使用引入 /lib/database 模块，连接：dbCon.connect()，使用完后记得断开连接：dbCon.end()
 更多使用方法请参考nodejs mysql文档。
 
+
 ### 系统配置
 Ezpress的系统配置参数放在 config.json 中，以json格式保存
 ```
