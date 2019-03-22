@@ -75,6 +75,36 @@ router.get('/testejs',function(req,res){
 在上述的例子中，访问 /../testjs后，控制器会渲染/application/view/testejs.ejs模版文件，并且将get传递的参数id和name的值传递给模版进行渲染。
 
 更多的ejs模版用法请参考ejs文档和express文档。
+
+###数据库使用
+Ezpress暂时只支持mysql
+使用数据库前先在config.json文件中的database写入mysql配置信息。
+
+```
+//测试db模块
+var dbCon = require('../../lib/database').dbCon();
+//query
+router.get('/db/query',function(req,res){
+  dbCon.connect();
+  var sql = 'SELECT * FROM user';
+
+  dbCon.query(sql, function (err, results, fields) {
+  if (err){
+    console.log('[SELECT ERROR] - ',err.message);
+    return;
+    }
+  re = results;
+  console.log(results);
+  res.send(results);
+  });
+
+  dbCon.end();
+  console.log('over');
+});
+```
+首先使用引入 /lib/database 模块，连接：dbCon.connect()，使用完后记得断开连接：dbCon.end()
+更多使用方法请参考nodejs mysql文档。
+
 ### 系统配置
 Ezpress的系统配置参数放在 config.json 中，以json格式保存
 ```
@@ -88,7 +118,7 @@ Ezpress的系统配置参数放在 config.json 中，以json格式保存
     "database":{
     "host":"localhost",
     "user":"root",
-    "password":"960921",
+    "password":"",
     "database":"weight_data"
   },
 
